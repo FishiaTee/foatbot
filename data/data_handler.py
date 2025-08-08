@@ -5,9 +5,10 @@ class DataHandler:
     data = {
         "users": {},
         "server": {
-            "goon_exp_gain": 3,
-            "goon_exp_next_multiplier": 1.5,
-            "goon_self_goon_divisor": 1.5
+            "goon_exp_gain": 4,
+            "goon_exp_next_multiplier": 1.35,
+            "goon_exp_gain_multiplier": 1.45,
+            "goon_self_goon_multiplier": 0.25
         }
     }
     def __init__(self, dir):
@@ -23,14 +24,21 @@ class DataHandler:
             "goon": {
                 "exp": 0,
                 "exp_next": 20,
-                "exp_gain_multiplier": 1.5,
                 "level": 1,
                 "total_count": 0,
+                "effects": {
+                    "exp_multipliers": []
+                },
+                "title": "New Gooner",
                 "goon_history": [],
                 "competitive": {
                     "rank": 1,
                     "match_history": [],
                     "records": {}
+                },
+                "stats": {
+                    "partners": {
+                    }
                 }
             }
         }
