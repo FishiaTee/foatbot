@@ -29,7 +29,7 @@ class DataHandler:
                 "competitive": {
                     "rank": 1,
                     "match_history": [],
-                   "records": {}
+                    "records": {}
                 }
             }
         }
