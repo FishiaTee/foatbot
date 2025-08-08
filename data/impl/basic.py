@@ -1,8 +1,10 @@
 import os
 import json
 import pathlib
+import sys
 from .. import data_handler
-from ...logger import logger
+sys.path.append("../..")
+from logger import logger
 
 class BasicDataHandler(data_handler.DataHandler):
     def write_to_disk(self):
