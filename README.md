@@ -1,6 +1,8 @@
 # foatbot
 A silly discord bot for FOAT, a joke server originated from GOAT
 
+*Everything in this repository was made entirely for joke purposes. Do not take them seriously :3*
+
 ## Getting started
 You will need to create a bot yourself. Instructions on how to do so can be found in the relevant [interactions.py guide](https://interactions-py.github.io/interactions.py/Guides/02%20Creating%20Your%20Bot/).
 

@@ -47,7 +47,8 @@ goon_specific_data = {
     ],
     "gifs": [
         "https://media.tenor.com/2UqiZdxuRvcAAAAC/fox-girl-anime-girl.gif",
-        "https://media.tenor.com/4j--36pffcEAAAAd/anis-euphie.gif"
+        "https://media.tenor.com/4j--36pffcEAAAAd/anis-euphie.gif",
+        "https://media.tenor.com/dCBeOkxsWdoAAAAd/tiredness.gif"
     ]
 }
 
@@ -85,7 +86,8 @@ async def goon_command(ctx: interactions.SlashContext, user: interactions.Member
     })
     if user.id not in user_data['stats']['partners'].keys():
         user_data['stats']['partners'][user.id] = 1
-    user_data['stats']['partners'][user.id] += 1
+    else:
+        user_data['stats']['partners'][user.id] += 1
     if user_data['exp'] >= user_data['exp_next']:
         user_data['level'] += 1
         user_data['exp'] = user_data['exp'] - user_data['exp_next']
