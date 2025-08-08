@@ -26,6 +26,7 @@ class BasicDataHandler(data_handler.DataHandler):
             self.data['users'][pathlib.Path(os.path.join(self.working_directory, "users", file)).stem] = user_data
         logger.verbose("reading server data...")
         server_data = json.load(open(os.path.join(self.working_directory, "general.json")))
-        self.data['server'] = server_data
+        for i in server_data.keys():
+            self.data['server'][i] = server_data[i]
         logger.success("data read done.")
         return super().read_from_disk()
