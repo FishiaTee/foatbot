@@ -1,6 +1,7 @@
 import json
 import datetime
 import interactions
+import random
 from logger import logger
 from data.impl import basic
 
@@ -9,6 +10,16 @@ config = json.load(open("config.json"))
 data_handler = basic.BasicDataHandler("storage")
 
 bot = interactions.Client(intents=interactions.Intents.DEFAULT)
+
+flavor_texts = {
+    "self_goon": [
+        "You sure do love yourself, literally."
+    ],
+    "goon": [
+        "There's supposed to be a random flavor text here, but instead you ran into this placeholder text lol",
+        "Experiencing post-nut clarity."
+    ]
+}
 
 @interactions.listen()
 async def on_ready():
@@ -29,8 +40,14 @@ async def goon_command(ctx: interactions.SlashContext, user: interactions.Member
     user_raw_data = data_handler.data['users'][ctx.user.id]
     user_data = user_raw_data['goon']
     goon_desc = f"{ctx.user.mention} ***gooned to*** {user.mention}!"
+    flavor_text = flavor_texts['goon'][random.randrange(0, len(flavor_texts['goon']))]
     user_data['total_count'] += 1
-    user_data['exp'] += round(data_handler.data['server']['goon_exp_gain'] * user_data['exp_gain_multiplier'])
+    exp_gained = round(data_handler.data['server']['goon_exp_gain'] * user_data['exp_gain_multiplier'])
+    if user.id == ctx.user.id:
+        exp_gained = exp_gained / data_handler.data['server']['goon_self_goon_divisor']
+        flavor_text = flavor_texts['self_goon'][random.randrange(0, len(flavor_texts['self_goon']))]
+    goon_desc += f"\n\n*{flavor_text}*"
+    user_data['exp'] += exp_gained
     user_data['goon_history'].append({
         "time": round(datetime.datetime.now().timestamp()),
         "partner": user.id

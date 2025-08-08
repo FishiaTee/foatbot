@@ -6,7 +6,8 @@ class DataHandler:
         "users": {},
         "server": {
             "goon_exp_gain": 3,
-            "goon_exp_next_multiplier": 1.5
+            "goon_exp_next_multiplier": 1.5,
+            "goon_self_goon_divisor": 1.5
         }
     }
     def __init__(self, dir):
