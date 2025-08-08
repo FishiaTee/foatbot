@@ -44,7 +44,7 @@ async def goon_command(ctx: interactions.SlashContext, user: interactions.Member
     user_data['total_count'] += 1
     exp_gained = round(data_handler.data['server']['goon_exp_gain'] * user_data['exp_gain_multiplier'])
     if user.id == ctx.user.id:
-        exp_gained = exp_gained / data_handler.data['server']['goon_self_goon_divisor']
+        exp_gained = round(exp_gained / data_handler.data['server']['goon_self_goon_divisor'])
         flavor_text = flavor_texts['self_goon'][random.randrange(0, len(flavor_texts['self_goon']))]
     goon_desc += f"\n\n*{flavor_text}*"
     user_data['exp'] += exp_gained
