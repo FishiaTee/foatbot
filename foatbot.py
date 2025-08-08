@@ -13,10 +13,10 @@ bot = interactions.Client(intents=interactions.Intents.DEFAULT)
 
 flavor_texts = {
     "self_goon": [
-        "You sure do love yourself, literally."
+        "You sure do love yourself, literally.",
+        "I LOVE MYSELF"
     ],
     "goon": [
-        "There's supposed to be a random flavor text here, but instead you ran into this placeholder text lol",
         "Experiencing post-nut clarity.",
         "IM COMMMING!!!!!!!!!!!!!!",
         ":eggplant: :stuck_out_tongue:"
@@ -44,6 +44,10 @@ goon_specific_data = {
         {
             "title": "King of the Freaks"
         }
+    ],
+    "gifs": [
+        "https://media.tenor.com/2UqiZdxuRvcAAAAC/fox-girl-anime-girl.gif",
+        "https://media.tenor.com/4j--36pffcEAAAAd/anis-euphie.gif"
     ]
 }
 
@@ -94,7 +98,7 @@ async def goon_command(ctx: interactions.SlashContext, user: interactions.Member
     fancy_embed = interactions.Embed(title="Gooned!",
                                      description=goon_desc,
                                      footer=f"LV: {user_data['level']} | EXP: {user_data['exp']} (next: {user_data['exp_next']}) | {user_data['title']}",
-                                     images=["https://tenor.com/view/girls-last-tour-yuuri-nuko-rub-girls-last-tour-shoujo-shuumatsu-ryokou-shoujo-shuumatsu-anime-gif-20422289"])
+                                     images=[goon_specific_data['gifs'][random.randrange(0, len(goon_specific_data['gifs']))]])
     data_handler.data['users'][ctx.user.id] = user_raw_data
     data_handler.write_to_disk()
     user_raw_data = {}
