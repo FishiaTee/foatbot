@@ -1,6 +1,7 @@
 import json
 import datetime
 import interactions
+from logger import logger
 from data.impl import basic
 
 config = json.load(open("config.json"))
@@ -11,7 +12,7 @@ bot = interactions.Client(intents=interactions.Intents.DEFAULT)
 
 @interactions.listen()
 async def on_ready():
-    print("bot is ready!")
+    logger.info("bot is ready!")
 
 @interactions.slash_command(name="goon",
                             description="Goon to someone",
@@ -21,7 +22,9 @@ async def on_ready():
                            required=True,
                            opt_type=interactions.OptionType.USER)
 async def goon_command(ctx: interactions.SlashContext, user: interactions.Member):
+    logger.info(f"/goon invoked by {ctx.user.id} ({ctx.user.display_name})")
     if not ctx.user.id in data_handler.data['users'].keys():
+        logger.verbose(f"creating new /goon data for {ctx.user.id}")
         data_handler.init_user(ctx.user.id)
     user_raw_data = data_handler.data['users'][ctx.user.id]
     user_data = user_raw_data['goon']
